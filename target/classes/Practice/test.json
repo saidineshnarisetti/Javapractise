@@ -1,0 +1,57 @@
+{
+    "ad": false,
+    "an": "TEST",
+    "bl": 10006,
+    "caps": 0,
+    "cc": {
+        "mn": "Custom",
+        "mv": "1.0"
+    },
+    "cid": "405a50207754eb87cdce37b228cb52090f95dfb9",
+    "cl": 10,
+    "clid": "3768705.3335827.880224.12345681",
+    "clv": "4.0.6",
+    "ct": "WiFi",
+    "efps": 20,
+    "evs": [
+        {
+            "bl": 10006,
+            "new": {
+                "tags": {
+                    "c3.ad.sessionStartEvent": "firstQuartile"
+                }
+            },
+            "pht": 5238,
+            "seq": 9,
+            "st": 7232,
+            "t": "CwsStateChangeEvent"
+        }
+    ],
+    "fw": "AVPlayer",
+    "fwv": "AVPlayer 10.0",
+    "hbinfos": [
+        {
+            "err": "ok",
+            "rtt": 382,
+            "seq": 1
+        }
+    ],
+    "iid": 1511486537,
+    "lv": false,
+    "pht": 7642,
+    "pj": false,
+    "pn": "aaa",
+    "ps": 3,
+    "pver": "2.6",
+    "sdk": true,
+    "seq": 19,
+    "sf": 7,
+    "sid": 474295323,
+    "sst": 1600830684811.621,
+    "st": 10074,
+    "t": "CwsSessionHb",
+    "url": "adtag_url",
+    "vid": "aaa",
+    "x_lphb": false,
+    "x_ttok": true
+}
