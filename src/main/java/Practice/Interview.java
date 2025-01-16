@@ -1,7 +1,5 @@
 package Practice;
 
-import static org.testng.Assert.assertFalse;
-
 public class Interview {
 
 	public static void main(String[] args) {
