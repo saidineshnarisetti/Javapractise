@@ -1,0 +1,243 @@
+Linux Quick Reference Guide
+File Commands
+* cat (Concatenate Files):
+    * cat >newfile.txt: Create a new file.
+    * cat newfile.txt: View the content of a file.
+    * cat newfile.txt second2.txt: View content from multiple files.
+    * cat >>second2.txt: Append content to an existing file.
+* Example:cat >example.txt
+* Hello World!  # Enter content and press Ctrl+D to save.
+* cp (Copy Command):
+    * cp sourcefile destinationfile: Copy a file.
+    * cp newfile.txt newfile123.txt: Copy newfile.txt to newfile123.txt.
+* mv (Move/Rename Files or Directories):
+    * Rename file: mv newfile123.txt newfiletest.txt.
+    * Rename directory: mv test testing.
+    * Move file: mv newfiletest.txt testing/testfile.txt.
+* rm (Remove Files or Directories):
+    * Delete file: rm newfile123.txt.
+    * Delete directory (empty): rm testing.
+    * Delete directory (non-empty): rm -rf testing.
+
+Directory Commands
+* mkdir (Make Directory):
+    * Create multiple directories: mkdir test1 test2 test3.
+    * Create nested directories: mkdir -p world/country/states.
+* cd (Change Directory):
+    * cd ~: Go to the home directory.
+    * cd ../: Move one level back.
+    * cd -: Switch to the previous directory.
+* rmdir (Remove Directory):
+    * Remove an empty directory: rmdir directoryname.
+    * Remove non-empty directory: rm -r.
+
+Miscellaneous Commands
+* touch:
+    * Create a file: touch myfile.txt.
+    * Create a hidden file: touch .myhidden.txt.
+* pwd:
+    * Print the current working directory.
+* ls (List Files/Directories):
+    * ls -ltra: Detailed list of files (including hidden files, size).
+    * ls -a: Show hidden files.
+    * ls -F: Show only folders.
+    * ls -r: List in reverse order.
+    * ls -R: Show subdirectories and directories recursively.
+    * ls -lS: Sort files by size.
+* Wildcards:
+    * ls ?: Match files with a single character.
+    * ls *: Match multiple characters.
+    * ls [a-c]*: Match files starting with a range of characters.
+
+File Viewing Commands
+* head:
+    * Display top lines of a file.
+    * head cities.txt: Top 10 lines.
+    * head -n 5 cities.txt: Top 5 lines.
+* tail:
+    * Display bottom lines of a file.
+    * tail cities.txt: Last 10 lines.
+    * tail -n 20 cities.txt: Last 20 lines.
+* Combined Example:head -15 cities.txt | tail -6  # Display lines 10 to 15.
+* 
+* more:
+    * View file content page by page.
+    * Navigation:
+        * Space: Move to the next page.
+        * Enter: Move one line.
+        * q: Quit.
+* less:
+    * Similar to more, but allows backward navigation using arrow keys.
+
+System Information Commands
+* who:
+    * Show users connected to the machine.
+* whoami:
+    * Show the username of the current user.
+* hostname:
+    * Display the machine's hostname.
+* uptime:
+    * Show how long the system has been running and the number of users.
+* cal:
+    * Display a calendar.
+        * cal: Current month.
+        * cal 2025: Full year 2025.
+        * cal 3 2025: March 2025.
+        * cal -y: Current year.
+* date:
+    * Display the current date and time.
+    * Formats:
+        * date "+%Y": Current year.
+        * date "+%d-%m-%Y": Day-Month-Year format.
+        * date "+%H:%M:%S": Time in HH:MM:SS format.
+
+Counting Commands
+* wc (Word Count):
+    * wc filename.txt: Display lines, words, and characters in a file.
+    * wc -l filename.txt: Count lines.
+    * wc -w filename.txt: Count words.
+    * wc -c filename.txt: Count characters.
+
+Sorting and Unique Commands
+* sort:
+    * sort cities.txt: Sort file data (does not modify the original file).
+    * sort -r cities.txt: Sort in reverse order.
+    * sort cities.txt > sorted.txt: Save sorted content to a file.
+* uniq:
+    * uniq sorted.txt: Remove duplicate lines (input must be sorted).
+    * uniq -d sorted.txt: Show only duplicate lines.
+    * uniq -u sorted.txt: Show only unique lines.
+
+Key Differences
+* more vs less:
+    * more: Navigate forward only.
+    * less: Navigate both forward and backward.
+
+Examples for Practice
+
+# Create a file and append content
+cat >file1.txt
+Hello World
+Ctrl+D
+
+cat >>file1.txt
+This is a new line
+Ctrl+D
+
+# View and sort a file
+cat file1.txt
+sort file1.txt > sorted_file.txt
+uniq sorted_file.txt
+
+# Display system info
+whoami
+hostname
+uptime
+
+# Navigate directories
+mkdir project/code
+cd project
+cd -  # Return to previous directory
+
+File Comparison Commands
+1. cmp: Compare two files byte by byte.
+    * Command: cmp file1.txt file2.txt
+    * Output: cmp: EOF on file1.txt (if files differ after a certain point or one ends earlier)
+2. diff: Compare the content of two files.
+    * Command: diff file1.txt file2.txt
+    * Notations:
+        * c → Change
+        * d → Delete
+        * a → Add
+        * < → Content from the first file
+        * > → Content from the second file
+3. comm: Compare two sorted files.
+    * Command: comm file1.txt file2.txt
+    * Output:
+        * Unique lines in file1
+        * Unique lines in file2
+        * Common lines in both files
+Input, Output & Error Redirection
+1. Redirect Standard Output:
+    * Command: cat > output.txt → Creates a new file and appends input.
+    * Command: cat >> output.txt → Appends input to an existing file.
+2. Redirect Errors:
+    * Command: cal 15 2025 2> error.txt → Redirect errors to a file.
+    * Command: cal 15 2025 2>> error.txt → Append errors to an existing file.
+3. Redirect Input:
+    * Command: cat < input.txt
+    * Explanation: Reads content from input.txt.
+4. Standard Streams:
+    * 0 → Standard Input
+    * 1 → Standard Output
+    * 2 → Standard Error
+5. tty: Displays the file name of the terminal.
+    * Command: tty
+
+Piping
+1. Combine commands using |:
+    * Command: ls -l | wc -l → Counts the number of files.
+    * Command: ls -l | less → Paginate output.
+    * Command: ls -l | head -5 → Shows the first 5 lines.
+2. tee: Write output to a file and pass it to the next command.
+    * Command: ls -l | tee output.txt | wc -l
+3. xargs: Pass arguments from one command to another.
+    * Command: cat test.txt | xargs rm → Deletes files listed in test.txt.
+    * Command: date | xargs echo → Appends the date to the next command.
+
+Regular Expressions
+1. Basic File Patterns:
+    * ls *.txt → All .txt files.
+    * ls a* → Files starting with a.
+    * ls ?.txt → Files with a single character name and .txt.
+2. Advanced Patterns:
+    * ls [ab]* → Files starting with a or b.
+    * ls [!ab]* → Files not starting with a or b.
+    * ls [a-z]*.txt → Lowercase files ending with .txt.
+    * ls [0-9]* → Files starting with numbers.
+    * ls [A-Z][0-9][a-z]*.txt → Files with uppercase, number, and lowercase in order.
+3. Special Character Files:
+    * ls [!A-Z][!0-9][!a-z]*.txt → Files starting with special characters.
+
+Search Commands
+1. grep: Search for patterns in files.
+    * Command: grep "Buxar" cities.txt
+    * Options:
+        * -i → Ignore case.
+        * -n → Show line numbers.
+        * -c → Count matching lines.
+        * -v → Exclude matching lines.
+2. egrep: Search using extended patterns.
+    * Command: egrep "(Delhi|Hyderabad)" cities.txt
+3. fgrep: Search for fixed strings.
+    * Command: fgrep "Delhi" cities.txt
+
+Permissions (chmod)
+1. Permissions:
+    * Read → 4
+    * Write → 2
+    * Execute → 1
+2. Usage:
+    * chmod 755 file.txt → Assigns permissions (owner: all, group: read/execute, others: read/execute).
+
+Process Management
+1. ps: Displays current processes.
+    * Command: ps
+2. kill: Terminates a process.
+    * Command: kill -9 <process_id>
+
+sed , find 
+1. sed: Stream editor for modifying file content.
+    * Example: Replace text in a file → sed 's/old/new/g' file.txt
+2. find: Search for files.
+    * Example: find . -name "*.txt"
+
+tar: folder to zip mydir > mydir.tar. tar -cvf test1.tar test1/
+gun zip : folder to gun zip > mydir.tar.gz. tar -cvf test1.tar.gz test1
+bun zip : folder to bun zip > mydir.tar.bz2  tar -cvf test1.tar.bz2 test1
+
+unzip : 
+
+tar -xvf test1.tar
+
+https://www.youtube.com/watch?v=d1NMb-AdZnI&list=PLUDwpEzHYYLtjJWMCJJDoPXjeSfzrCF-F&index=16 
